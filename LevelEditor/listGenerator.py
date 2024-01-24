@@ -1,5 +1,5 @@
 import pygame
-from tile import Tile
+from .tile import Tile
 
 class LevelGenerator:
     def __init__(self,filepath,screen) -> None:
