@@ -7,7 +7,9 @@ class LevelGenerator:
         self.Width = self.getLevelSize()
         self.Height = self.getLevelHeight()
         self.tileScale = self.getScale(screen)
+        self.ground = list() 
         self.level = self.createLevel()
+
 
     def getLevel(self):
         return self.level
@@ -25,6 +27,7 @@ class LevelGenerator:
             match char:
                 case "x":
                     level.append(Tile(origin.x,origin.y,"Blue"))
+                    self.ground.append(Tile(origin.x,origin.y,"Blue"))
                     origin.x += self.tileScale[1]
                 case "o":
                     level.append(Tile(origin.x,origin.y,"Black"))
@@ -51,3 +54,4 @@ class LevelGenerator:
             if char == ",": 
                 height += 1
         return height
+    
