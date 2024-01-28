@@ -11,7 +11,6 @@ class CollisionHandler():
         self.verticalMovementCollisions()
         self.horizontalMovementCollisions()
 
-
     def horizontalMovementCollisions(self):
         self.player.rect.x += self.player.direction.x * self.player.speed         
         for tile in self.collisionMap:
