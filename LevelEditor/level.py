@@ -10,7 +10,6 @@ class LevelGenerator:
         self.ground = list() 
         self.level = self.createLevel()
 
-
     def getLevel(self):
         return self.level
     
@@ -30,7 +29,6 @@ class LevelGenerator:
                     self.ground.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Blue"))
                     origin.x += self.tileScale[1]
                 case "o":
-                    level.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Black"))
                     origin.x += self.tileScale[1]
                 case "i":
                     level.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Green"))
@@ -48,6 +46,7 @@ class LevelGenerator:
                 if char == ",":
                     break
         return count
+    
     def getLevelHeight(self):
         height = 0
         for char in self.file:
@@ -55,3 +54,7 @@ class LevelGenerator:
                 height += 1
         return height
     
+
+    def drawLevel(self,screen):
+        for tile in self.level:
+            tile.draw(screen)
