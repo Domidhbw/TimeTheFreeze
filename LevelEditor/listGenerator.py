@@ -26,14 +26,14 @@ class LevelGenerator:
         for char in self.file:
             match char:
                 case "x":
-                    level.append(Tile(origin.x,origin.y,"Blue"))
-                    self.ground.append(Tile(origin.x,origin.y,"Blue"))
+                    level.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Blue"))
+                    self.ground.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Blue"))
                     origin.x += self.tileScale[1]
                 case "o":
-                    level.append(Tile(origin.x,origin.y,"Black"))
+                    level.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Black"))
                     origin.x += self.tileScale[1]
                 case "i":
-                    level.append(Tile(origin.x,origin.y,"Green"))
+                    level.append(Tile(origin.x,origin.y,self.tileScale[1],self.tileScale[0],"Green"))
                     origin.x += self.tileScale[1]
                 case ",":
                     origin.x = 0

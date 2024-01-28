@@ -1,16 +1,17 @@
 import pygame
 from LevelEditor.listGenerator import LevelGenerator
-from testOBJ import Player
+from player.player import Player
 
 pygame.init()
 screen = pygame.display.set_mode((1800, 900))
 clock = pygame.time.Clock()
+dt = clock.tick(60)/1000
 running = True
 
 
 #initialize class
 level = LevelGenerator("LevelEditor/testLevel.txt",pygame.display.get_surface())
-player = Player()
+player = Player(50,50,150)
 applyGravity = True
 
 while running:
@@ -19,37 +20,41 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        if player.hasJump:
-            player.rectangle.y -= 14000 * dt
-            applyGravity = True
-            player.hasJump = False
-    if keys[pygame.K_a]:
-        player.rectangle.x -= 300 * dt
-    if keys[pygame.K_d]:
-        player.rectangle.x += 300 * dt
-
-    #GAMELOOP
-
     #FOR COLLISION LOOP THROUGH level.ground
     for collisions in level.ground:
-        collisions.rectangle.update(collisions.rectangle.left,collisions.rectangle.top,level.tileScale[1],level.tileScale[0])
-        if collisions.rectangle.colliderect(player.rectangle):
-            print("collision")
-            applyGravity = False    
         if collisions.rectangle.colliderect(player.groundCheck):
-            player.hasJump = True
+            player.downHit = True
+        if collisions.rectangle.colliderect(player.rightCheck):
+            player.rightHit = True
+        if collisions.rectangle.colliderect(player.leftCheck):
+            player.leftHit = True
 
+        
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        player.jump_pressed = True
+    else:
+        player.jump_pressed = False
+    if keys[pygame.K_a]:
+        player.right_pressed = True
+    else:
+        player.right_pressed = False
+    if keys[pygame.K_d]:
+        player.left_pressed = True
+    else:
+        player.left_pressed = False
 
-    if applyGravity:
-        player.rectangle.y += player.downforce
+    player.update(dt)
+    #GAMELOOP
 
     # RENDER YOUR GAME HERE
     for tile in level.level:
-        tile.rectangle.update(tile.rectangle.left,tile.rectangle.top,level.tileScale[1],level.tileScale[0])
         tile.draw(screen)
-    pygame.draw.rect(screen,"red",player.rectangle)
+    pygame.draw.rect(screen,"red",player.rect)
+    pygame.draw.rect(screen,"blue",player.rightCheck)
+    pygame.draw.rect(screen,"blue",player.leftCheck)
+    pygame.draw.rect(screen,"blue",player.upperCheck)
+    pygame.draw.rect(screen,"blue",player.groundCheck)
 
     pygame.display.flip()
 
