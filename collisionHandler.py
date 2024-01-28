@@ -12,27 +12,25 @@ class CollisionHandler():
         self.horizontalMovementCollisions()
 
     def horizontalMovementCollisions(self):
-        self.player.rect.x += self.player.direction.x * self.player.speed         
+        self.player.move()         
         for tile in self.collisionMap:
-            if tile.rectangle.colliderect(self.player.rect):
+            if tile.rect.colliderect(self.player.rect):
                 if self.player.direction.x < 0:
-                    pass
-                    self.player.rect.left = tile.rectangle.right
+                    self.player.rect.left = tile.rect.right
                 elif self.player.direction.x > 0:
-                    pass
-                    self.player.rect.right = tile.rectangle.left
+                    self.player.rect.right = tile.rect.left
     
     def verticalMovementCollisions(self):
         self.player.applyGravity()
         for tile in self.collisionMap:
-            if tile.rectangle.colliderect(self.player.rect):
-                print(self.player.direction.y)
+            if tile.rect.colliderect(self.player.rect):
                 if self.player.direction.y > 0:
                     self.player.direction.y = 0
-                    self.player.rect.bottom = tile.rectangle.top
+                    self.player.rect.bottom = tile.rect.top
+                    self.player.hasJump = True
                 elif self.player.direction.y < 0:
                     self.player.direction.y = 0
-                    self.player.rect.top = tile.rectangle.bottom
+                    self.player.rect.top = tile.rect.bottom
 
 
 

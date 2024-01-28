@@ -1,9 +1,10 @@
 import pygame
 
 class Player:
-    def __init__(self, x, y, speed):
+    def __init__(self, spawn, speed):
+        self.spawn = spawn
         self.direction = pygame.Vector2(0,0)
-        self.rect = pygame.Rect(x,y,30,60)
+        self.rect = pygame.rect.Rect(spawn.x,spawn.y,30,60)
         self.color = pygame.Vector3(250,120,60)
         self.hasJump = True
         self.jumpSpeed = -7
@@ -18,7 +19,15 @@ class Player:
         if keys[pygame.K_a]:
             self.direction.x = -1
         if keys[pygame.K_w]:
-            self.jump()
+            if self.hasJump:
+                self.jump()
+                self.hasJump = False
+
+    def doSuperPower(self):
+        #TODO CREATE A NEW rect ON THE PLAYER POSITION add it to the collision handler
+        self.rect.x = self.spawn.x
+        self.rect.y = self.spawn.y
+
 
     def applyGravity(self):
         self.direction.y += self.gravity 
@@ -36,6 +45,9 @@ class Player:
     def update(self):
         self.getKeyPressed()
         self.applyFriction()      
+
+    def move(self):
+        self.rect.x += self.direction.x * self.speed
 
 
 
