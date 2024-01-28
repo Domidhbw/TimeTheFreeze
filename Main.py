@@ -23,13 +23,11 @@ while running:
     #FOR COLLISION LOOP THROUGH level.ground
     for collisions in level.ground:
         if collisions.rectangle.colliderect(player.groundCheck):
-            player.applyGravity = False
-            player.hasJump = True
+            player.downHit = True
         if collisions.rectangle.colliderect(player.rightCheck):
             player.rightHit = True
         if collisions.rectangle.colliderect(player.leftCheck):
             player.leftHit = True
-
 
         
     keys = pygame.key.get_pressed()

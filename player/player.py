@@ -14,12 +14,13 @@ class Player:
         self.right_pressed = False
         self.left_pressed = False
         self.jump_pressed = False
-        self.jumpSpeed = 8000
+        self.jumpSpeed = 1200
         self.applyGravity = True
         self.speed = speed
         self.friction = 10
         self.leftHit = False
         self.rightHit = False
+        self.downHit = False
         self.groundCheck = pygame.Rect(self.x+2,(self.y+30),20,1)
         self.upperCheck = pygame.Rect(self.x,(self.y-30),30,1)
         self.rightCheck = pygame.Rect((self.x+30),self.y,5,30)
@@ -27,6 +28,13 @@ class Player:
 
     
     def update(self,dt):
+        if self.downHit:
+            self.applyGravity = False
+            self.hasJump = True 
+            self.downHit = False
+        else:
+            self.applyGravity = True
+
         if self.left_pressed:
             self.velX += self.speed 
         if self.right_pressed:
