@@ -11,7 +11,7 @@ running = True
 
 #initialize class
 level = LevelGenerator("LevelEditor/testLevel.txt",pygame.display.get_surface())
-player = Player(50,50,20)
+player = Player(50,50,150)
 applyGravity = True
 
 while running:
@@ -26,13 +26,11 @@ while running:
             player.applyGravity = False
             player.hasJump = True
         if collisions.rectangle.colliderect(player.rightCheck):
-            player.right_pressed = False
-            player.velX = -1
-            print("right")
+            player.rightHit = True
         if collisions.rectangle.colliderect(player.leftCheck):
-            player.left_pressed = False
-            player.velX = 1
-            print("left")
+            player.leftHit = True
+
+
         
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
