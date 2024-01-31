@@ -10,12 +10,11 @@ clock = pygame.time.Clock()
 dt = clock.tick(60)/1000
 running = True
 
-
 #initialize class
-level = LevelGenerator("LevelEditor/testLevel.txt",pygame.display.get_surface())
-player = Player(pygame.Vector2(50,50),5)
+level = LevelGenerator("LevelEditor/testLevel.txt")
+player = Player(pygame.Vector2(400,50),5)
 collision = CollisionHandler(player,level.ground)
-superPower = doSuperPower(player,level.ground,level.level)
+superPower = doSuperPower(level.ground,level.level)
 
 while running:
     #GET INPUT
@@ -24,18 +23,24 @@ while running:
             running = False
     
     screen.fill("black")
+
     keys = pygame.key.get_pressed()
     if keys[pygame.K_f]:
-        superPower.doIt()
+        superPower.doIt(player)
    
     #GAMELOOP
+    level.update(screen,player)
+
+
     player.update()
     collision.update(player,level.ground)
 
+
     #DRAW THE GAME
-    level.drawLevel(screen)
     pygame.draw.rect(screen,player.color,player.rect)
     pygame.display.flip()
+
+
 
     dt = clock.tick(60)/1000  
 
