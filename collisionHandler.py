@@ -11,8 +11,6 @@ class CollisionHandler():
         self.horizontalMovementCollisions()
         self.verticalMovementCollisions()
 
-
-
     def horizontalMovementCollisions(self):
         self.player.applyFriction()
         self.player.move()         

@@ -4,13 +4,10 @@ from .tile import Tile
 class LevelGenerator:
     def __init__(self,filepath) -> None:
         self.file = open(filepath,"r").read()
-        self.tileScale = (50,50)
+        self.tileScale = (70,70)
         self.ground = list() 
         self.level = self.createLevel()
         self.shift = 0
-
-    def getLevel(self):
-        return self.level
     
     def createLevel(self):
         origin = pygame.Vector2(0,0)
@@ -35,7 +32,6 @@ class LevelGenerator:
         for tile in self.level:
             tile.draw(screen)
 
-
     def updateCollisions(self):
         for tile in self.ground:
             tile.rect.x += self.shift
@@ -43,7 +39,6 @@ class LevelGenerator:
             if tile.color == 'red':
                 break
             tile.rect.x += self.shift
-
 
     def scrool(self,player):
         keys = pygame.key.get_pressed()
