@@ -2,23 +2,16 @@ import pygame
 from .tile import Tile
 
 class LevelGenerator:
-    def __init__(self,filepath,screen) -> None:
+    def __init__(self,filepath) -> None:
         self.file = open(filepath,"r").read()
-        self.Width = self.getLevelSize()
-        self.Height = self.getLevelHeight()
-        self.tileScale = self.getScale(screen)
+        self.tileScale = (50,50)
         self.ground = list() 
         self.level = self.createLevel()
+        self.shift = 0
 
     def getLevel(self):
         return self.level
     
-    def getScale(self,screen:pygame.display):
-        width,height = screen.get_size()
-        nHorizontalTiles =  width / self.Width
-        nVerticalTiles = height / self.Height
-        return nHorizontalTiles,nVerticalTiles
-
     def createLevel(self):
         origin = pygame.Vector2(0,0)
         level = list()
@@ -38,23 +31,39 @@ class LevelGenerator:
                     origin.y += self.tileScale[0]
         return level
     
-    def getLevelSize(self):
-        count = -1
-        for char in self.file:
-            if char != " ":
-                count += 1
-                if char == ",":
-                    break
-        return count
-    
-    def getLevelHeight(self):
-        height = 0
-        for char in self.file:
-            if char == ",": 
-                height += 1
-        return height
-    
-
     def drawLevel(self,screen):
         for tile in self.level:
             tile.draw(screen)
+
+
+    def updateCollisions(self):
+        for tile in self.ground:
+            tile.rect.x += self.shift
+        for tile in self.level:
+            if tile.color == 'red':
+                break
+            tile.rect.x += self.shift
+
+
+    def scrool(self,player):
+        keys = pygame.key.get_pressed()
+        direction = player.direction.x
+        center = player.rect.centerx
+        if center < 500 and direction < 0 and keys[pygame.K_a]:
+            self.shift = 5
+            player.speed = 0
+        elif center > 1000 and direction > 0 and keys[pygame.K_d]:
+            self.shift = -5
+            player.speed = 0
+        else:
+            self.shift = 0
+            player.speed = 5
+        
+    def update(self,screen,player):
+        self.updateCollisions()
+        self.drawLevel(screen)
+        self.scrool(player)
+        
+
+            
+
