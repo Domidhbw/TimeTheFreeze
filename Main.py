@@ -28,13 +28,12 @@ while running:
     if keys[pygame.K_f]:
         superPower.doIt(player)
    
+
+
     #GAMELOOP
     level.update(screen,player)
-
-
     player.update()
     collision.update(player,level.ground)
-
 
     #DRAW THE GAME
     pygame.draw.rect(screen,player.color,player.rect)

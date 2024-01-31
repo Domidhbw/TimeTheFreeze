@@ -32,6 +32,9 @@ class CollisionHandler():
                     self.player.direction.y = 0
                     self.player.rect.bottom = tile.rect.top
                     self.player.hasJump = True
+                elif self.player.direction.y < 0:
+                    self.player.rect.top = tile.rect.bottom
+                    self.player.direction.y = 0
 
 
 

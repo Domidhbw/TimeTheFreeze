@@ -35,11 +35,17 @@ class LevelGenerator:
         for tile in self.level:
             tile.draw(screen)
 
+
     def updateCollisions(self):
         for tile in self.ground:
             tile.rect.x += self.shift
         for tile in self.level:
+            if tile.color == 'red':
+                print('clone is affected')
+                print(tile.rect.x)
+                break
             tile.rect.x += self.shift
+
 
     def scrool(self,player):
         keys = pygame.key.get_pressed()
