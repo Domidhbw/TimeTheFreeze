@@ -41,8 +41,6 @@ class LevelGenerator:
             tile.rect.x += self.shift
         for tile in self.level:
             if tile.color == 'red':
-                print('clone is affected')
-                print(tile.rect.x)
                 break
             tile.rect.x += self.shift
 

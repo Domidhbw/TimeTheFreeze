@@ -29,7 +29,6 @@ while running:
         superPower.doIt(player)
    
 
-
     #GAMELOOP
     level.update(screen,player)
     player.update()
@@ -38,8 +37,6 @@ while running:
     #DRAW THE GAME
     pygame.draw.rect(screen,player.color,player.rect)
     pygame.display.flip()
-
-
 
     dt = clock.tick(60)/1000  
 
