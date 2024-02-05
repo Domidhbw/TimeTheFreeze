@@ -17,5 +17,5 @@ class TileManager:
             print('key does not exist check your colors and test level')
     
     def createClone(self,player):
-        return Tile(player.rect.left,player.rect.top,player.color,'p',True)
+        return Tile(player.rect.left,player.rect.top,'./assets/player.png','p',True)
         

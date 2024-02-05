@@ -7,18 +7,18 @@ level_map=[
 '                   f      f',
 '                  f        ',
 '                           ',
-'                    x      ',
-'      ii           xx      ',
-'      ii          xxx      ',
-'xxx              xxxx      ',
-'xxxxxxxxxxxxxxxxxxxxx      ',
-'xxxxxxxxxxxxxxxxxxxxx      ',
+'                    xx     ',
+'      ii           xxx     ',
+'      ii          xxxx     ',
+'xxx              xxxxx     ',
+'xxxxxxxxxxxxxxxxxxxxxx     ',
+'xxxxxxxxxxxxxxxxxxxxxx     ',
 ]
 tiles = {
-    'o': 'Black',
-    'i': 'Green',
-    'x': 'Blue',
-    'f': 'Yellow',
-    's': 'White'
+    'o': './ground.png',
+    'i': './ground.png',
+    'x': './assets/hardGround.png',
+    'f': './ground.png',
+    's': './ground.png'
 }
 tilsize = 64

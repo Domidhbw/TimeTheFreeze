@@ -8,9 +8,12 @@ class LevelManager:
         self.tileManager = TileManager()
         self.level = list()
         self.shift = pygame.Vector2()
+        self.overallXShift = 0
         self.collisionMap = list()
 
+
     def createCollisionMap(self):
+        self.collisionMap = list()
         for tile in self.level:
             if tile.hitBox == True:
                 self.collisionMap.append(tile)
@@ -24,15 +27,20 @@ class LevelManager:
 
     def drawLevel(self,surface):
         for tile in self.level:
-            pygame.draw.rect(surface,tile.color,tile.rect )
+            surface.blit(tile.sprite,(tile.rect.x,tile.rect.y))
         
     def updateCollisions(self):
         for tile in self.level:
-            if tile.color == 'red':
-                break
             tile.rect.x += self.shift.x
+            self.overallXShift += self.shift.x
 
     def scrool(self,player):
+            if not player.alive:
+                player.rect.x = player.spawn.x
+                player.rect.y = player.spawn.y
+                self.resetLevel()
+                player.alive = True
+                pass
             keys = pygame.key.get_pressed()
             direction = player.direction.x
             center = player.rect.centerx
@@ -45,6 +53,10 @@ class LevelManager:
             else:
                 self.shift.x = 0
                 player.speed = 3
+
+    def resetLevel(self):
+        self.createLevel()
+        self.createCollisionMap()
 
     def update(self,player):
         self.scrool(player)
