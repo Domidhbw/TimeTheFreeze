@@ -9,7 +9,7 @@ class Player:
         self.hasJump = True
         self.jumpSpeed = -20
         self.speed = speed
-        self.friction = 0.2
+        self.friction = 0.1
         self.gravity = 0.8
 
     def getKeyPressed(self):

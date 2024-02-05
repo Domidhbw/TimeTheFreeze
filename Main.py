@@ -1,5 +1,5 @@
 import pygame
-from LevelEditor.level import LevelGenerator
+from Level.levelManager import LevelManager
 from player.player import Player
 from collisionHandler import CollisionHandler
 from superPower import doSuperPower
@@ -11,10 +11,12 @@ dt = clock.tick(60)/1000
 running = True
 
 #initialize class
-level = LevelGenerator("LevelEditor/testLevel.txt")
-player = Player(pygame.Vector2(400,50),5)
-collision = CollisionHandler(player,level.ground)
-superPower = doSuperPower(level.ground,level.level)
+levelManager = LevelManager()
+levelManager.createLevel()
+levelManager.createCollisionMap()
+player = Player(pygame.Vector2(400,50),20)
+collision = CollisionHandler(player,levelManager.collisionMap)
+superPower = doSuperPower(levelManager.collisionMap,levelManager.level)
 
 while running:
     #GET INPUT
@@ -28,13 +30,14 @@ while running:
     if keys[pygame.K_f]:
         superPower.doIt(player)
    
-
     #GAMELOOP
-    level.update(screen,player)
     player.update()
-    collision.update(player,level.ground)
+    collision.update(player,levelManager.collisionMap)
+    levelManager.update(player)
+
 
     #DRAW THE GAME
+    levelManager.drawLevel(screen)
     pygame.draw.rect(screen,player.color,player.rect)
     pygame.display.flip()
 
