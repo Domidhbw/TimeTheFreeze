@@ -14,7 +14,7 @@ running = True
 levelManager = LevelManager()
 levelManager.createLevel()
 levelManager.createCollisionMap()
-player = Player(pygame.Vector2(400,50),20)
+player = Player(pygame.Vector2(400,50),5)
 collision = CollisionHandler(player,levelManager.collisionMap)
 superPower = doSuperPower()
 
@@ -31,7 +31,7 @@ while running:
     levelManager.update(player)
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_f]:
+    if keys[pygame.K_w]:
         superPower.doIt(player,levelManager)
 
     #DRAW THE GAME

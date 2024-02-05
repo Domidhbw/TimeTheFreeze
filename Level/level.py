@@ -18,7 +18,7 @@ tiles = {
     'o': './ground.png',
     'i': './ground.png',
     'x': './assets/hardGround.png',
-    'f': './ground.png',
+    'f': './assets/yellow.png',
     's': './ground.png'
 }
 tilsize = 64
