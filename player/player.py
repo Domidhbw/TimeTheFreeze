@@ -3,6 +3,7 @@ import pygame
 class Player:
     def __init__(self, spawn, speed):
         self.spawn = spawn
+        self.sprite = pygame.image.load('./assets/player.png').convert()
         self.direction = pygame.Vector2(0,0)
         self.rect = pygame.rect.Rect(spawn.x,spawn.y,30,60)
         self.color = pygame.Vector3(250,120,60)
@@ -11,6 +12,8 @@ class Player:
         self.speed = speed
         self.friction = 0.1
         self.gravity = 0.8
+        self.alive = True
+        self.isSuperPowerAllowed = True
 
     def getKeyPressed(self):
         keys = pygame.key.get_pressed()
@@ -38,6 +41,22 @@ class Player:
 
     def update(self):
         self.getKeyPressed()
+        self.checkForDeath()
 
     def move(self):
         self.rect.x += self.direction.x * self.speed
+
+    def checkForDeath(self):
+        if self.rect.y > 900:
+            self.alive = False
+            self.isSuperPowerAllowed = True
+
+    def draw(self,screen):
+        isLookingLeft = False
+        if self.direction.x > 0:
+            isLookingLeft = False
+        elif self.direction.x < 0:
+            isLookingLeft = True
+        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y))
+
+                       

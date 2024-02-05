@@ -16,7 +16,7 @@ levelManager.createLevel()
 levelManager.createCollisionMap()
 player = Player(pygame.Vector2(400,50),20)
 collision = CollisionHandler(player,levelManager.collisionMap)
-superPower = doSuperPower(levelManager.collisionMap,levelManager.level)
+superPower = doSuperPower()
 
 while running:
     #GET INPUT
@@ -25,20 +25,19 @@ while running:
             running = False
     
     screen.fill("black")
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_f]:
-        superPower.doIt(player)
-   
     #GAMELOOP
     player.update()
     collision.update(player,levelManager.collisionMap)
     levelManager.update(player)
 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_f]:
+        superPower.doIt(player,levelManager)
 
     #DRAW THE GAME
     levelManager.drawLevel(screen)
-    pygame.draw.rect(screen,player.color,player.rect)
+    player.draw(screen)
+    
     pygame.display.flip()
 
     dt = clock.tick(60)/1000  
