@@ -11,6 +11,8 @@ class TileManager:
             match char:
                 case 'x':
                     return Tile(left,top,self.tileInformation[char],char,True)
+                case 's':
+                    return Tile(left,top,self.tileInformation[char],char,True)
                 case _:
                     return Tile(left,top,self.tileInformation[char],char,False)
         else:
