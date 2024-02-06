@@ -9,7 +9,7 @@ class doSuperPower:
         if player.isSuperPowerAllowed:
             player.isSuperPowerAllowed = False
             tile = self.tileM.createClone(player)
-            tile.rect.update(tile.rect.left,tile.rect.top,player.rect.width,player.rect.heigth)
+            tile.rect.update(tile.rect.left,tile.rect.top,player.rect.width,player.rect.height)
             player.rect.x = player.spawn.x
             player.rect.y = player.spawn.y
             a = levelManager.level[-1].rect.x

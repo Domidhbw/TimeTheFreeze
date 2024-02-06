@@ -5,7 +5,7 @@ class Player:
         self.spawn = spawn
         self.sprite = pygame.image.load('./assets/player.png').convert()
         self.direction = pygame.Vector2(0,0)
-        self.rect = pygame.rect.Rect(spawn.x,spawn.y,35,75)
+        self.rect = pygame.rect.Rect(spawn.x,spawn.y,79,75)
         self.color = pygame.Vector3(250,120,60)
         self.hasJump = True
         self.jumpSpeed = -15
@@ -57,6 +57,6 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
-        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y))
+        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y ))
 
                        
