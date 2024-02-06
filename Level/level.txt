@@ -1,0 +1,18 @@
+to do 
+write in level.py a function that takes information from this leveln file
+
+-spikes (saure), bunzenbrenner flamme
+-jump platform for jump bost
+-knopf zum placen
+- laser durchezogen 
+- reagenzglas (farbe skin)
+- bewegbare platform eisen etc
+
+Labor Tuere oder Gate
+
+- timer for speedrun saves to file
+-  1 reagenzglas pro level platzieren für schwierigkeit
+
+wissenschaftler hat ihn gefoltert und er will ausbrechen und rache nehmen
+
+- end animation wie blob den wissenschaftler peitscht

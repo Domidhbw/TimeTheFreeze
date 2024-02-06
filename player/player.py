@@ -14,6 +14,7 @@ class Player:
         self.gravity = 0.8
         self.alive = True
         self.isSuperPowerAllowed = True
+        self.maxSpeed = 100
 
     def getKeyPressed(self):
         keys = pygame.key.get_pressed()
@@ -25,6 +26,9 @@ class Player:
             if self.hasJump:
                 self.jump()
                 self.hasJump = False
+
+        # check for sprint key
+                # appply speed until max...
 
     def applyGravity(self):
         self.direction.y += self.gravity 
@@ -44,7 +48,7 @@ class Player:
         self.checkForDeath()
 
     def move(self):
-        self.rect.x += self.direction.x * self.speed
+        self.rect.x += self.direction.x * self.speed 
 
     def checkForDeath(self):
         if self.rect.y > 900:
@@ -57,6 +61,6 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
-        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y ))
+        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y))
 
                        
