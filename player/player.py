@@ -1,4 +1,5 @@
 import pygame
+from Level.levelManager import LevelManager
 
 class Player:
     def __init__(self, spawn, speed):
@@ -52,6 +53,7 @@ class Player:
         self.checkForDeath()
         self.checkSprint()
 
+
     def move(self):
         self.rect.x += self.direction.x * self.speed * self.isMoveAllowed
 
@@ -72,5 +74,4 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
-
         screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))
