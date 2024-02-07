@@ -59,9 +59,9 @@ class Player:
         self.rect.x += self.direction.x * self.speed * self.isMoveAllowed
 
     def checkSprint(self):
-        if self.isSprinting and self.speed < self.maxSpeed:
+        if self.isSprinting and self.speed <= self.maxSpeed:
             self.speed += 1
-        elif not self.isSprinting and self.speed < self.minSpeed:
+        elif not self.isSprinting and self.speed >= self.minSpeed:
             self.speed -= 1
 
     def checkForDeath(self):
