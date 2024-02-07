@@ -10,11 +10,7 @@ class LevelManager:
         self.shift = pygame.Vector2()
         self.overallXShift = 0
         self.collisionMap = list()
-<<<<<<< Updated upstream
-=======
-        self.playerSpeed = 5
         self.currentLevel = 1
->>>>>>> Stashed changes
 
     def createCollisionMap(self):
         self.collisionMap = list()
