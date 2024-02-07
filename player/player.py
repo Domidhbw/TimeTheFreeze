@@ -12,8 +12,11 @@ class Player:
         self.speed = speed
         self.friction = 0.2
         self.gravity = 0.8
+        self.maxSpeed = 8
+        self.minSpeed = 5
         self.alive = True
         self.isSuperPowerAllowed = True
+        self.isMoveAllowed = True
 
     def getKeyPressed(self):
         keys = pygame.key.get_pressed()
