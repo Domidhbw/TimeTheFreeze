@@ -45,14 +45,14 @@ class LevelManager:
             direction = player.direction.x
             center = player.rect.centerx
             if center < 500 and direction < 0 and keys[pygame.K_a]:
-                self.shift.x = player.speed
-                player.isMoveAllowed = False
+                self.shift.x = self.playerSpeed
+                player.speed = 0
             elif center > 1000 and direction > 0 and keys[pygame.K_d]:
-                self.shift.x = -player.speed
-                player.isMoveAllowed = False
+                self.shift.x = -self.playerSpeed
+                player.speed = 0
             else:
                 self.shift.x = 0
-                player.isMoveAllowed = True
+                player.speed = self.playerSpeed
 
 
     def loadNewLevel(self):
