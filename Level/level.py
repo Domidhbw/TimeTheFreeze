@@ -1,4 +1,5 @@
 level_map=[
+<<<<<<< Updated upstream
 '                     f  f                             ',
 '                      ff                              ',
 '           s          ff                              ',
@@ -13,6 +14,22 @@ level_map=[
 'xxx              xxxxx             iii     x x        ',
 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ',
 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ',
+=======
+'                           ',
+'                           ',
+'                           ',
+'    wvvvx                  ',
+'    immmy                  ',
+'                           ',
+'                           ',
+'           wj              ',
+'           zy          wvx ',
+'                     wvtun ',
+'                   wvtuuun ',
+' wx         f wvkvvtuuuuun ',
+'vtsvx  wvkkkvvtuuuuuuuuuun ',
+'uuuun  puuuuuuuuuuuuuuuuun ',
+>>>>>>> Stashed changes
 ]
 tiles = {
     'o': './assets/black.png',
