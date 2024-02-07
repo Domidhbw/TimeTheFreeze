@@ -1,4 +1,5 @@
 level_map=[
+<<<<<<< Updated upstream
 '                     f  f                             ',
 '                      ff                              ',
 '           s          ff                              ',
@@ -13,12 +14,45 @@ level_map=[
 'xxx              xxxxx             iii     x x        ',
 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ',
 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ',
+=======
+'                           ',
+'                           ',
+'                           ',
+'    wvvvx                  ',
+'    immmy                  ',
+'                           ',
+'                           ',
+'           wj              ',
+'           zy          wvx ',
+'                     wvtun ',
+'                   wvtuuun ',
+' wx         f wvkvvtuuuuun ',
+'vtsvx  wvkkkvvtuuuuuuuuuun ',
+'uuuun  puuuuuuuuuuuuuuuuun ',
+>>>>>>> Stashed changes
 ]
 tiles = {
-    'o': './ground.png',
-    'i': './ground.png',
-    'x': './assets/hardGround.png',
-    'f': './assets/yellow.png',
-    's': './ground.png'
+    'o': './assets/black.png',
+    'u': './assets/tile.png',
+    'v': './assets/topTile.png',
+    'w': './assets/topTileLeftCorner.png',
+    'x': './assets/topTileRightCorner.png',
+    'y': './assets/bottomTileRightCorner.png',
+    'z': './assets/bottomTileLeftCorner.png',
+    'q': './assets/topTileLilCornerBottomLeft.png',
+    'r': './assets/topTileLilCornerBottomRight.png',
+    's': './assets/topTileLilCornerTopRight.png',
+    't': './assets/topTileLilCornerTopLeft.png',
+    'p': './assets/leftTile.png',
+    'n': './assets/tileRight.png',
+    'm': './assets/bottomTile.png',
+    'l': './assets/AcidTop.png',
+    'k': './assets/AcidTopTile.png',
+    'j': './assets/AcidCorner_rechts_oben.png',
+    'i': './assets/AcidtopTileLeftBottomCorner.png',
+    'h': './assets/AcidtopTileLeftCorner.png',
+    'g': './assets/AcidtopTileRightBottomCorner.png',
+    'f': './assets/yellow.png'
+
 }
 tilsize = 64
