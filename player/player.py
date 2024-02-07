@@ -12,9 +12,11 @@ class Player:
         self.speed = speed
         self.friction = 0.2
         self.gravity = 0.8
+        self.maxSpeed = 8
+        self.minSpeed = 5
         self.alive = True
         self.isSuperPowerAllowed = True
-        self.maxSpeed = 100
+        self.isMoveAllowed = True
 
     def getKeyPressed(self):
         keys = pygame.key.get_pressed()
@@ -26,12 +28,13 @@ class Player:
             if self.hasJump:
                 self.jump()
                 self.hasJump = False
+        if keys[pygame.K_LSHIFT]:
+            self.isSprinting = True
+        else: self.isSprinting = False
 
-        # check for sprint key
-                # appply speed until max...
 
     def applyGravity(self):
-        self.direction.y += self.gravity 
+        self.direction.y += self.gravity
         self.rect.y += self.direction.y
 
     def jump(self):
@@ -41,14 +44,21 @@ class Player:
         if self.direction.x > 0.1:
             self.direction.x -= self.friction
         if self.direction.x < -0.1:
-            self.direction.x += self.friction 
+            self.direction.x += self.friction
 
     def update(self):
         self.getKeyPressed()
         self.checkForDeath()
+        self.checkSprint()
 
     def move(self):
-        self.rect.x += self.direction.x * self.speed 
+        self.rect.x += self.direction.x * self.speed * self.isMoveAllowed
+
+    def checkSprint(self):
+        if self.isSprinting and self.speed <= self.maxSpeed:
+            self.speed += 1
+        elif not self.isSprinting and self.speed >= self.minSpeed:
+            self.speed -= 1
 
     def checkForDeath(self):
         if self.rect.y > 900:
@@ -61,6 +71,5 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
-        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y))
 
-                       
+        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))

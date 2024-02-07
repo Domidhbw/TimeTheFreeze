@@ -10,7 +10,7 @@ class LevelManager:
         self.shift = pygame.Vector2()
         self.overallXShift = 0
         self.collisionMap = list()
-        self.playerSpeed = 5
+        self.currentLevel = 1
 
     def createCollisionMap(self):
         self.collisionMap = list()
@@ -45,14 +45,24 @@ class LevelManager:
             direction = player.direction.x
             center = player.rect.centerx
             if center < 500 and direction < 0 and keys[pygame.K_a]:
-                self.shift.x = self.playerSpeed
-                player.speed = 0
+                self.shift.x = player.speed
+                player.isMoveAllowed = False
             elif center > 1000 and direction > 0 and keys[pygame.K_d]:
-                self.shift.x = -self.playerSpeed
-                player.speed = 0
+                self.shift.x = -player.speed
+                player.isMoveAllowed = False
             else:
                 self.shift.x = 0
-                player.speed = self.playerSpeed
+                player.isMoveAllowed = True
+
+
+    def loadNewLevel(self):
+        self.currentLevel +=1
+        filePath = './Levels/level' + str(self.currentLevel) + '.txt'
+        with open(filePath, 'r') as file:
+            # Read lines without stripping
+            level = [line.rstrip('\n') for line in file]
+        self.LevelData = level
+
 
     def resetLevel(self):
         self.createLevel()
