@@ -75,10 +75,6 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
-<<<<<<< Updated upstream
         screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y ))
-=======
-        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))
->>>>>>> Stashed changes
 
                        

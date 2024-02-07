@@ -10,11 +10,6 @@ class LevelManager:
         self.shift = pygame.Vector2()
         self.overallXShift = 0
         self.collisionMap = list()
-<<<<<<< Updated upstream
-=======
-        self.playerSpeed = 5
-        self.currentLevel = 1
->>>>>>> Stashed changes
 
     def createCollisionMap(self):
         self.collisionMap = list()
@@ -57,16 +52,6 @@ class LevelManager:
             else:
                 self.shift.x = 0
                 player.isMoveAllowed = True
-
-
-    def loadNewLevel(self):
-        self.currentLevel +=1
-        filePath = './Levels/level' + str(self.currentLevel) + '.txt'
-        with open(filePath, 'r') as file:
-            # Read lines without stripping
-            level = [line.rstrip('\n') for line in file]
-        self.LevelData = level
-
 
     def resetLevel(self):
         self.createLevel()

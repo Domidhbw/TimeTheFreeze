@@ -1,10 +1,9 @@
 import pygame
 
 class CollisionHandler():
-    def __init__(self,player,levelManager) -> None:
+    def __init__(self,player,collisionMap) -> None:
         self.player = player
-        self.collisionMap = levelManager.collisionMap
-        self.levelManager = levelManager
+        self.collisionMap = collisionMap
 
     def update(self,player,collisionMap):
         self.player = player
@@ -21,9 +20,6 @@ class CollisionHandler():
                     self.player.rect.left = tile.rect.right
                 elif self.player.direction.x > 0:
                     self.player.rect.right = tile.rect.left
-                if tile.char == 'f':
-                    self.levelManager.loadNewLevel()
-                    self.levelManager.resetLevel()
 
     
     def verticalMovementCollisions(self):
