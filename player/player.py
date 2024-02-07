@@ -33,10 +33,10 @@ class Player:
         if keys[pygame.K_LSHIFT]:
             self.isSprinting = True
         else: self.isSprinting = False
-
+        
 
     def applyGravity(self):
-        self.direction.y += self.gravity
+        self.direction.y += self.gravity 
         self.rect.y += self.direction.y
 
     def jump(self):
@@ -46,13 +46,14 @@ class Player:
         if self.direction.x > 0.1:
             self.direction.x -= self.friction
         if self.direction.x < -0.1:
-            self.direction.x += self.friction
+            self.direction.x += self.friction 
 
     def update(self):
         self.getKeyPressed()
         self.checkForDeath()
         self.checkSprint()
-
+        
+        
 
     def move(self):
         self.rect.x += self.direction.x * self.speed * self.isMoveAllowed
@@ -74,4 +75,10 @@ class Player:
             isLookingLeft = False
         elif self.direction.x < 0:
             isLookingLeft = True
+<<<<<<< Updated upstream
+        screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y ))
+=======
         screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))
+>>>>>>> Stashed changes
+
+                       
