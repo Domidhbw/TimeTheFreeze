@@ -18,6 +18,7 @@ levelManager.createLevel()
 levelManager.createCollisionMap()
 player = Player(pygame.Vector2(400,50),5)
 collision = CollisionHandler(player,levelManager)
+collision.createKillTileList()
 superPower = doSuperPower()
 
 while running:
