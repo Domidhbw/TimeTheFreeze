@@ -35,15 +35,15 @@ class LevelManager:
             tile.rect.x += self.shift.x
             self.overallXShift += self.shift.x
 
-    def scrool(self,player):
+    def scrool(self,player,dt):
             keys = pygame.key.get_pressed()
             direction = player.direction.x
             center = player.rect.centerx
             if center < 500 and direction < 0 and keys[pygame.K_a]:
-                self.shift.x = player.speed
+                self.shift.x = player.speed *dt
                 player.isMoveAllowed = False
             elif center > 1000 and direction > 0 and keys[pygame.K_d]:
-                self.shift.x = -player.speed
+                self.shift.x = -player.speed*dt
                 player.isMoveAllowed = False
             else:
                 self.shift.x = 0
@@ -68,6 +68,6 @@ class LevelManager:
         self.createLevel()
         self.createCollisionMap()
 
-    def update(self,player):
-        self.scrool(player)
+    def update(self,player,dt):
+        self.scrool(player,dt)
         self.updateCollisions()

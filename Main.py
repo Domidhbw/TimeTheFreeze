@@ -5,12 +5,10 @@ from collisionHandler import CollisionHandler
 from superPower import doSuperPower
 from Menu.menu import Menu
 from saveManager.saveManager import SaveManager
-from music import music
 
 pygame.init()
 
-musicHandler = music.MusicHandler()
-musicHandler.playMusic()
+
 
 baseWidth, baseHeight = 1800,900
 windowWidth, windowHeight = pygame.display.Info().current_w,pygame.display.Info().current_h
@@ -28,7 +26,7 @@ svManager = SaveManager()
 levelManager = LevelManager(svManager)
 levelManager.createLevel()
 levelManager.createCollisionMap()
-player = Player(pygame.Vector2(400,90),5)
+player = Player(pygame.Vector2(400,90),400)
 collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower()
@@ -46,8 +44,8 @@ while running:
     screen.fill("darkgrey")
     #GAMELOOP  
     player.update(levelManager)
-    levelManager.update(player)
-    collision.update(player,levelManager.collisionMap)
+    levelManager.update(player,dt)
+    collision.update(player,levelManager.collisionMap,dt)
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
