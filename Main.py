@@ -61,8 +61,8 @@ while running:
         screen.fill("darkgrey")
         #GAMELOOP  
         player.update(levelManager)
-        levelManager.update(player)
-        collision.update(player,levelManager.collisionMap)
+        levelManager.update(player,dt)
+        collision.update(player,levelManager.collisionMap,dt)
 
         #DRAW THE GAME
         screen.blit(background,(0,0)) 
