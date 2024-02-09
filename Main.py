@@ -5,9 +5,12 @@ from collisionHandler import CollisionHandler
 from superPower import doSuperPower
 from Menu.menu import Menu
 from saveManager.saveManager import SaveManager
+from music import music
 
 pygame.init()
 
+musicHandler = music.MusicHandler()
+musicHandler.playMusic()
 
 
 baseWidth, baseHeight = 1800,900

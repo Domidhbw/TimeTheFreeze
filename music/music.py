@@ -8,13 +8,15 @@ class MusicHandler:
             "./music/horrer_synths.wav"     #music im start screen
         ]
          self.currentTrack = 0
-    def playMusic(self):
-        pygame.mixer.music.load(self.tracks[self.currentTrack])
-        pygame.mixer.music.play()
+    def playTrack(self,track):
+        if self.currentTrack != track:
+            pygame.mixer.music.load(self.tracks[track])
+            pygame.mixer.music.play()
+            self.currentTrack = track
     def updateMusic(self):
         if  not pygame.mixer.music.get_busy():
             MusicHandler.playMusic(self)
             
 #musicHandler = music.MusicHandler()
-#musicHandler.playMusic()
+#musicHandler.playMusic(0 or 1)
 #from music import music
