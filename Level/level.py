@@ -7,7 +7,7 @@ level_map=[
 '                                                      ',
 '                                                      ',
 '           wj                                         ',
-'           zy          wex                            ',
+'           zy          hex                            ',
 '                     wvtun                            ',
 '                   wvtuuun                            ',
 ' wx           wvkvvtuuuuun              wvvvllllx     ',
@@ -33,7 +33,7 @@ tiles = {
     'k': './assets/AcidTopTile.png',
     'j': './assets/AcidCorner_rechts_oben.png',
     'i': './assets/AcidtopTileLeftBottomCorner.png',
-    'h': './assets/AcidtopTileLeftCorner.png',
+    'h': './assets/AcidtopTileLeft.png',
     'g': './assets/AcidtopTileRightBottomCorner.png',
     'f': './assets/FinishLine.png',
     'e': './assets/jumpTile.png'

@@ -36,6 +36,7 @@ class CollisionHandler():
                 if tile.char == 'e':
                     self.playerJumpTile()
                 if tile.char == 'f':
+                    self.player.die(self.levelManager)
                     self.levelManager.loadNextLevel()
                     self.levelManager.resetLevel()
                 self.checkForKillTiles(tile.char)

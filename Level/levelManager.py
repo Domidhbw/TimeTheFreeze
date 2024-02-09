@@ -3,7 +3,7 @@ from .level import *
 from .tileManager import TileManager
 
 class LevelManager:
-    def __init__(self) -> None:
+    def __init__(self,svManager) -> None:
         self.LevelData = level_map
         self.tileManager = TileManager()
         self.level = list()
@@ -11,6 +11,7 @@ class LevelManager:
         self.overallXShift = 0
         self.collisionMap = list()
         self.currentLevel = 1
+        self.svManager = svManager
 
     def createCollisionMap(self):
         self.collisionMap = list()
@@ -51,6 +52,8 @@ class LevelManager:
 
     def loadNewLevel(self,level):
         self.currentLevel = level
+        if level > self.svManager.levelVar:
+            self.svManager.writeCurrentLevel(level)
         filePath = './Levels/level' + str(level) + '.txt'
         print(filePath)
         with open(filePath, 'r') as file:
