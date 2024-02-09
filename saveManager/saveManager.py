@@ -1,6 +1,5 @@
 import json
 
-
 class SaveManager():
     def __init__(self) -> None:
         self.file = './saveFile.json'

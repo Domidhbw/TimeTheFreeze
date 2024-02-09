@@ -9,24 +9,28 @@ from music import music
 
 pygame.init()
 
-musicHandler = music.MusicHandler()
-musicHandler.playMusic()
-
-
+#Window Settings
 baseWidth, baseHeight = 1800,900
+windowWidth, windowHeight = 700,500
 windowWidth, windowHeight = pygame.display.Info().current_w,pygame.display.Info().current_h
-
 window = pygame.display.set_mode((windowWidth,windowHeight))
 screen = pygame.Surface((baseWidth,baseHeight))
+
+#pygame Settings
 clock = pygame.time.Clock()
 dt = clock.tick(60)/1000
 running = True
 
-#initialize class
+#Level Logic settings
+playing = 'playing'
+levelSelection = 'levelSelection'
+paused = 'paused'
+gameState = levelSelection
+
+#initialize classes
 background = pygame.image.load('./assets/Background.png').convert()
-menu = Menu(windowWidth,windowHeight)
-svManager = SaveManager()
-levelManager = LevelManager(svManager)
+menu = Menu()
+levelManager = LevelManager()
 levelManager.createLevel()
 levelManager.createCollisionMap()
 player = Player(pygame.Vector2(400,90),300)
@@ -34,37 +38,42 @@ collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower()
 
-
-levelManager.loadNewLevel(1)
-levelManager.resetLevel()
-
 while running:
     #GET INPUT
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif gameState == levelSelection:
+            #input handling for level selection menu
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                gameState = menu.handleMouse(pygame.mouse.get_pos(),levelManager)
+        elif gameState == playing:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_w]:
+                superPower.doIt(player,levelManager)
 
-    screen.fill("darkgrey")
-    #GAMELOOP  
-    player.update(levelManager)
-    levelManager.update(player,dt)
-    collision.update(player,levelManager.collisionMap,dt)
+    if gameState == levelSelection:
+        menu.draw(screen,window)
+        pygame.display.flip()
+        continue
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        superPower.doIt(player,levelManager)
+    if gameState == playing:
+        screen.fill("darkgrey")
+        #GAMELOOP  
+        player.update(levelManager)
+        levelManager.update(player)
+        collision.update(player,levelManager.collisionMap)
 
-    #DRAW THE GAME
-    screen.blit(background,(0,0)) 
-    levelManager.drawLevel(screen)
-    player.draw(screen)
+        #DRAW THE GAME
+        screen.blit(background,(0,0)) 
+        levelManager.drawLevel(screen)
+        player.draw(screen)
 
-    scaled_surface = pygame.transform.scale(screen, (windowWidth, windowHeight))
+        scaled_surface = pygame.transform.scale(screen, (windowWidth, windowHeight))
 
-    window.blit(scaled_surface,(0,0))
-
-    
-    pygame.display.flip()
+        window.blit(scaled_surface,(0,0))
+        
+        pygame.display.flip()
 
     dt = clock.tick(60)/1000  
 
