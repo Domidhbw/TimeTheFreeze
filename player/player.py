@@ -8,12 +8,12 @@ class Player:
         self.rect = pygame.rect.Rect(spawn.x,spawn.y,79,69)
         self.color = pygame.Vector3(250,120,60)
         self.hasJump = True
-        self.jumpSpeed = -15
+        self.jumpSpeed = -900
         self.speed = speed
         self.friction = 0.2
-        self.gravity = 0.8
-        self.maxSpeed = 8
-        self.minSpeed = 5
+        self.gravity = 48
+        self.maxSpeed = 480
+        self.minSpeed = speed
         self.alive = True
         self.isSuperPowerAllowed = True
         self.isMoveAllowed = True
@@ -32,9 +32,9 @@ class Player:
             self.isSprinting = True
         else: self.isSprinting = False
 
-    def applyGravity(self):
-        self.direction.y += self.gravity
-        self.rect.y += self.direction.y
+    def applyGravity(self,dt):
+        self.direction.y += self.gravity 
+        self.rect.y += self.direction.y *dt
 
     def jump(self):
         self.direction.y = self.jumpSpeed
@@ -50,14 +50,14 @@ class Player:
         self.checkForDeath(levelManager)
         self.checkSprint()
 
-    def move(self):
-        self.rect.x += self.direction.x * self.speed * self.isMoveAllowed
+    def move(self,dt):
+        self.rect.x += self.direction.x * self.speed * self.isMoveAllowed * dt
 
     def checkSprint(self):
         if self.isSprinting and self.speed <= self.maxSpeed:
-            self.speed += 1
+            self.speed += 60
         elif not self.isSprinting and self.speed >= self.minSpeed:
-            self.speed -= 1
+            self.speed -= 60
 
     def die(self,levelManager):
         self.rect.x = self.spawn.x
@@ -81,4 +81,4 @@ class Player:
         screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))
 
     def jumpHigh(self):
-       self.direction.y = self.jumpSpeed * 2
+       self.direction.y = self.jumpSpeed *2  
