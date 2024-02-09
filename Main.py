@@ -12,6 +12,7 @@ dt = clock.tick(60)/1000
 running = True
 
 #initialize class
+background = pygame.image.load('./assets/Background.png').convert()
 menu = Menu()
 levelManager = LevelManager()
 levelManager.createLevel()
@@ -21,9 +22,11 @@ collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower()
 
-while running:
-    menu.main(screen)
+menu.main(screen)
+levelManager.loadNewLevel(menu.selectedLevel)
+levelManager.resetLevel()
 
+while running:
     #GET INPUT
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -31,7 +34,7 @@ while running:
     
     screen.fill("darkgrey")
     #GAMELOOP  
-    player.update()
+    player.update(levelManager)
     collision.update(player,levelManager.collisionMap)
     levelManager.update(player)
 
@@ -40,6 +43,7 @@ while running:
         superPower.doIt(player,levelManager)
 
     #DRAW THE GAME
+    screen.blit(background,(0,0)) 
     levelManager.drawLevel(screen)
     player.draw(screen)
     
@@ -48,3 +52,5 @@ while running:
     dt = clock.tick(60)/1000  
 
 pygame.quit()
+
+

@@ -35,12 +35,6 @@ class LevelManager:
             self.overallXShift += self.shift.x
 
     def scrool(self,player):
-            if not player.alive:
-                player.rect.x = player.spawn.x
-                player.rect.y = player.spawn.y
-                self.resetLevel()
-                player.alive = True
-                pass
             keys = pygame.key.get_pressed()
             direction = player.direction.x
             center = player.rect.centerx
@@ -55,14 +49,17 @@ class LevelManager:
                 player.isMoveAllowed = True
 
 
-    def loadNewLevel(self):
-        self.currentLevel +=1
-        filePath = './Levels/level' + str(self.currentLevel) + '.txt'
+    def loadNewLevel(self,level):
+        self.currentLevel = level
+        filePath = './Levels/level' + str(level) + '.txt'
+        print(filePath)
         with open(filePath, 'r') as file:
             # Read lines without stripping
             level = [line.rstrip('\n') for line in file]
         self.LevelData = level
 
+    def loadNextLevel(self):
+        self.loadNewLevel(self.currentLevel + 1)
 
     def resetLevel(self):
         self.createLevel()

@@ -1,18 +1,18 @@
 level_map=[
-'                           ',
-'                           ',
-'                           ',
-'    wvvvx                  ',
-'    immmy                  ',
-'                           ',
-'                           ',
-'           wj              ',
-'           zy          wex ',
-'                     wvtun ',
-'                   wvtuuun ',
-' wx           wvkvvtuuuuun ',
-'vtsvx  wvkkkvvtuuuuuuuuuun ',
-'uuuun  puuuuuuuuuuuuuuuuun ',
+'                                                      ',
+'                                                      ',
+'                                                      ',
+'    wvvvx                                             ',
+'    immmy                                             ',
+'                                                      ',
+'                                                      ',
+'           wj                                         ',
+'           zy          wex                            ',
+'                     wvtun                            ',
+'                   wvtuuun                            ',
+' wx           wvkvvtuuuuun              wvvvllllx     ',
+'vtsvx  wvkkkvvtuuuuuuuuuun   wvvvex     puuuuuuun     ',
+'uuuun  puuuuuuuuuuuuuuuuun   puuuun     puuuuuuun     ',
 ]
 tiles = {
     'o': './assets/black.png',
@@ -35,7 +35,7 @@ tiles = {
     'i': './assets/AcidtopTileLeftBottomCorner.png',
     'h': './assets/AcidtopTileLeftCorner.png',
     'g': './assets/AcidtopTileRightBottomCorner.png',
-    'f': './assets/yellow.png',
+    'f': './assets/FinishLine.png',
     'e': './assets/jumpTile.png'
 
 }

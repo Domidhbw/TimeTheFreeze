@@ -32,7 +32,6 @@ class Player:
             self.isSprinting = True
         else: self.isSprinting = False
 
-
     def applyGravity(self):
         self.direction.y += self.gravity
         self.rect.y += self.direction.y
@@ -46,9 +45,9 @@ class Player:
         if self.direction.x < -0.1:
             self.direction.x += self.friction
 
-    def update(self):
+    def update(self,levelManager):
         self.getKeyPressed()
-        self.checkForDeath()
+        self.checkForDeath(levelManager)
         self.checkSprint()
 
     def move(self):
@@ -60,11 +59,18 @@ class Player:
         elif not self.isSprinting and self.speed >= self.minSpeed:
             self.speed -= 1
 
-    def checkForDeath(self):
-        if self.rect.y > 900:
-            self.alive = False
-            self.isSuperPowerAllowed = True
+    def die(self,levelManager):
+        self.rect.x = self.spawn.x
+        self.rect.y = self.spawn.y
+        levelManager.resetLevel()
+        self.alive = True
+        self.isSuperPowerAllowed = True
+        pass
 
+    def checkForDeath(self,levelManager):
+        if self.rect.y > 900:
+            self.die(levelManager)
+            
     def draw(self,screen):
         isLookingLeft = False
         if self.direction.x > 0:
