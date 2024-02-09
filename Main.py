@@ -21,7 +21,7 @@ collision = CollisionHandler(player,levelManager)
 superPower = doSuperPower()
 
 while running:
-    menu.main(running,screen)
+    menu.main(screen)
 
     #GET INPUT
     for event in pygame.event.get():

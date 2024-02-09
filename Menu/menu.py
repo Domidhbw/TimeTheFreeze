@@ -6,11 +6,9 @@ class Menu:
         self.isLevelSelected = False
         self.levelOne = pygame.rect.Rect(100,200,100,20)
 
-    def main(self,running,screen):
+    def main(self,screen):
         while not self.isLevelSelected:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
+            for event in pygame.event.get():   
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.isLevelSelected = self.handleMouse(pygame.mouse.get_pos())
             self.drawMenu(screen)
