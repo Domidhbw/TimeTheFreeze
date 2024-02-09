@@ -1,9 +1,10 @@
 import pygame
 from .level import *
 from .tileManager import TileManager
+import json
 
 class LevelManager:
-    def __init__(self,svManager) -> None:
+    def __init__(self) -> None:
         self.LevelData = level_map
         self.tileManager = TileManager()
         self.level = list()
@@ -11,7 +12,6 @@ class LevelManager:
         self.overallXShift = 0
         self.collisionMap = list()
         self.currentLevel = 1
-        self.svManager = svManager
 
     def createCollisionMap(self):
         self.collisionMap = list()
@@ -52,8 +52,6 @@ class LevelManager:
 
     def loadNewLevel(self,level):
         self.currentLevel = level
-        if level > self.svManager.levelVar:
-            self.svManager.writeCurrentLevel(level)
         filePath = './Levels/level' + str(level) + '.txt'
         print(filePath)
         with open(filePath, 'r') as file:
@@ -62,7 +60,8 @@ class LevelManager:
         self.LevelData = level
 
     def loadNextLevel(self):
-        self.loadNewLevel(self.currentLevel + 1)
+        self.loadNewLevel(int(self.currentLevel)+1)
+        self.saveLevelStatus(self.currentLevel)
 
     def resetLevel(self):
         self.createLevel()
@@ -71,3 +70,23 @@ class LevelManager:
     def update(self,player):
         self.scrool(player)
         self.updateCollisions()
+
+    def saveLevelStatus(self,level_to_complete):
+        filename='./saveFile.json'
+        # Load the current levels and their completion status
+        try:
+            with open(filename, 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            print(f"No such file: {filename}")
+            return
+
+        # Update the specified level's completion status to True
+        levels = data.get('levels', {})
+        levels[str(level_to_complete)] = True
+
+        # Write the updated data back to the JSON file
+        with open(filename, 'w') as file:
+            json.dump(data, file, indent=4)
+
+        print(f"Level {level_to_complete} completion status updated to True.")
