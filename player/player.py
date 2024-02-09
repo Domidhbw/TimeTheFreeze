@@ -8,11 +8,11 @@ class Player:
         self.rect = pygame.rect.Rect(spawn.x,spawn.y,79,69)
         self.color = pygame.Vector3(250,120,60)
         self.hasJump = True
-        self.jumpSpeed = -750
+        self.jumpSpeed = -900
         self.speed = speed
         self.friction = 0.2
-        self.gravity = 2200
-        self.maxSpeed = 400
+        self.gravity = 48
+        self.maxSpeed = 480
         self.minSpeed = speed
         self.alive = True
         self.isSuperPowerAllowed = True
@@ -33,7 +33,7 @@ class Player:
         else: self.isSprinting = False
 
     def applyGravity(self,dt):
-        self.direction.y += self.gravity *dt
+        self.direction.y += self.gravity 
         self.rect.y += self.direction.y *dt
 
     def jump(self):
@@ -55,9 +55,9 @@ class Player:
 
     def checkSprint(self):
         if self.isSprinting and self.speed <= self.maxSpeed:
-            self.speed += 200
+            self.speed += 60
         elif not self.isSprinting and self.speed >= self.minSpeed:
-            self.speed -= 5
+            self.speed -= 60
 
     def die(self,levelManager):
         self.rect.x = self.spawn.x
