@@ -15,7 +15,6 @@ level_map=[
 'uuuun  puuuuuuuuuuuuuuuuun   puuuun     puuuuuuun     ',
 ]
 tiles = {
-    'o': './assets/black.png',
     'u': './assets/tile.png',
     'v': './assets/topTile.png',
     'w': './assets/topTileLeftCorner.png',

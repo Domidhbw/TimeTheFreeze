@@ -4,7 +4,6 @@ from player.player import Player
 from collisionHandler import CollisionHandler
 from superPower import doSuperPower
 from Menu.menu import Menu
-from saveManager.saveManager import SaveManager
 from music import music
 from Menu.escapeMenu import EscapeMenu
 
@@ -43,6 +42,7 @@ levelManager.createCollisionMap()
 collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower(musicHandler)
+
 
 while running:
     #GET INPUT
@@ -88,7 +88,7 @@ while running:
         screen.blit(background,(0,0)) 
         levelManager.drawLevel(screen)
         player.draw(screen)
-
+        
         scaled_surface = pygame.transform.scale(screen, (windowWidth, windowHeight))
 
         window.blit(scaled_surface,(0,0))

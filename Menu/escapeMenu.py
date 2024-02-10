@@ -7,11 +7,10 @@ class EscapeMenu():
 
 
     def __init__(self,musicHandler) -> None:
-        self.resumeButton = EscapeButton('./assets/Buttons/Resume.png',750,350)
-        self.restartButton = EscapeButton('./assets/Buttons/Restart.png',950,350)
+        self.restartButton = EscapeButton('./assets/Buttons/Restart.png',850,350)
         self.quitButton = EscapeButton('./assets/Buttons/Menu.png',750,450)
         self.quitToDesktop = EscapeButton('./assets/Buttons/End.png',950,450)
-        self.allSprites = [self.resumeButton,self.restartButton,self.quitButton,self.quitToDesktop]
+        self.allSprites = [self.restartButton,self.quitButton,self.quitToDesktop]
         self.background = pygame.image.load('./assets/Background.png').convert()
         self.musicSlider = slider()
         self.musicHandler = musicHandler
@@ -19,9 +18,7 @@ class EscapeMenu():
 
     def handleInput(self,mousePos,player,levelManager):
         mousePos = self.adjustMousePosition(mousePos)
-        if self.resumeButton.rect.collidepoint(mousePos):
-            return 'playing'
-        elif self.restartButton.rect.collidepoint(mousePos):
+        if self.restartButton.rect.collidepoint(mousePos):
             player.die(levelManager)
             return 'playing'
         elif self.quitButton.rect.collidepoint(mousePos):
