@@ -85,4 +85,5 @@ class Player:
         screen.blit(pygame.transform.flip(self.sprite,isLookingLeft,False),(self.rect.x,self.rect.y + 8))
 
     def jumpHigh(self):
-       self.direction.y = self.jumpSpeed *2  
+       self.direction.y = self.jumpSpeed *2
+       self.musicHandler.playSoundJumpPad()
