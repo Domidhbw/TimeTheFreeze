@@ -2,11 +2,12 @@ import pygame
 from Level.tileManager import TileManager
 
 class doSuperPower:
-    def __init__(self) -> None:
+    def __init__(self,musicHandler) -> None:
         self.tileM = TileManager()
-    
+        self.musicHandler = musicHandler
     def doIt(self,player,levelManager):
         if player.isSuperPowerAllowed:
+            self.musicHandler.playSoundClone()
             player.isSuperPowerAllowed = False
             tile = self.tileM.createClone(player)
             tile.rect.update(tile.rect.left,tile.rect.top,player.rect.width,player.rect.height)

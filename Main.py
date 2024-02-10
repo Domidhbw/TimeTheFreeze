@@ -29,17 +29,20 @@ paused = 'paused'
 gameState = levelSelection
 escape = 'escape'
 
+#Music Settings
+musicHandler = music.MusicHandler()
+
 #initialize classes
 escapeMenu = EscapeMenu()
 background = pygame.image.load('./assets/Background.png').convert()
 menu = Menu()
-player = Player(pygame.Vector2(400,90),300)
+player = Player(pygame.Vector2(400,90),300,musicHandler)
 levelManager = LevelManager(player)
 levelManager.createLevel()
 levelManager.createCollisionMap()
 collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
-superPower = doSuperPower()
+superPower = doSuperPower(musicHandler)
 
 while running:
     #GET INPUT
@@ -63,6 +66,7 @@ while running:
                     running = False
 
     if gameState == levelSelection:
+        musicHandler.playTrack(1,False)
         menu.draw(screen,window)
         pygame.display.flip()
         continue
@@ -73,6 +77,7 @@ while running:
         continue
 
     if gameState == playing:
+        musicHandler.playTrack(0,False)
         screen.fill("darkgrey")
         #GAMELOOP  
         player.update(levelManager)
@@ -90,6 +95,8 @@ while running:
         
         pygame.display.flip()
 
+    musicHandler.updateMusic()
     dt = clock.tick(60)/1000  
 
 pygame.quit()
+
