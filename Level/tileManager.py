@@ -9,6 +9,12 @@ class TileManager:
     def createTile(self,char,left,top):
         if char in self.tileInformation.keys():
             match char:
+                case 'b':
+                    return Tile(left,top,self.tileInformation[char],char,False)  
+                case 'c':
+                    return Tile(left,top,self.tileInformation[char],char,False)  
+                case 'd':
+                    return Tile(left,top,self.tileInformation[char],char,False)  
                 case 'f':
                     return Tile(left,top,self.tileInformation[char],char,True)
                 case _:

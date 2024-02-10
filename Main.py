@@ -82,7 +82,7 @@ while running:
         #GAMELOOP  
         player.update(levelManager)
         levelManager.update(player,dt)
-        collision.update(player,levelManager.collisionMap,dt)
+        collision.update(player,levelManager.collisionMap,dt,screen)
 
         #DRAW THE GAME
         screen.blit(background,(0,0)) 

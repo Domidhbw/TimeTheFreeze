@@ -5,7 +5,7 @@ class Tile:
         self.heigth = 64
         self.width = 64
         self.imagePath = imagePath
-        self.sprite = pygame.image.load(imagePath).convert()
+        self.sprite = pygame.image.load(imagePath).convert_alpha()
         self.rect = pygame.rect.Rect(left,top,self.width,self.heigth)
         self.char = char
         self.hitBox = hitbox

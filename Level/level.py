@@ -35,7 +35,10 @@ tiles = {
     'h': './assets/AcidtopTileLeft.png',
     'g': './assets/AcidtopTileRightBottomCorner.png',
     'f': './assets/FinishLine.png',
-    'e': './assets/jumpTile.png'
+    'e': './assets/jumpTile.png',
+    'b': './assets/ArrowDown.png',
+    'c': './assets/ArrowRight.png',
+    'd': './assets/ArrowUp.png'
 
 }
 tilsize = 64

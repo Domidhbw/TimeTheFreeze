@@ -93,4 +93,3 @@ class LevelManager:
         with open(filename, 'w') as file:
             json.dump(data, file, indent=4)
 
-        print(f"Level {level_to_complete} completion status updated to True.")
