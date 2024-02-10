@@ -11,6 +11,7 @@ class Menu:
         self.selectableLevels = self.getLevels(True)
         self.unselectableLevels = self.getLevels(False)
         self.levels = self.createLevelList()
+        self.background = pygame.image.load('./assets/Background.png').convert()
         
     def menuStart(self):
         self.levelStatus = self.loadLevelStatus()
@@ -29,9 +30,9 @@ class Menu:
         return 'levelSelection'
 
     def draw(self,screen,window):
-        screen.fill("darkgrey")
+        screen.blit(self.background,(0,0)) 
         for levelButton in self.levels:
-            pygame.draw.rect(screen,levelButton.color,levelButton.rect)
+            screen.blit(levelButton.sprite,(levelButton.rect.x,levelButton.rect.y))
         scaled_surface = pygame.transform.scale(screen, (pygame.display.Info().current_w, pygame.display.Info().current_h))
         window.blit(scaled_surface,(0,0))
 
