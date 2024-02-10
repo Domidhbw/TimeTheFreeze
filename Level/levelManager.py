@@ -4,7 +4,7 @@ from .tileManager import TileManager
 import json
 
 class LevelManager:
-    def __init__(self) -> None:
+    def __init__(self,player) -> None:
         self.LevelData = level_map
         self.tileManager = TileManager()
         self.level = list()
@@ -12,6 +12,7 @@ class LevelManager:
         self.overallXShift = 0
         self.collisionMap = list()
         self.currentLevel = 1
+        self.player = player
 
     def createCollisionMap(self):
         self.collisionMap = list()
@@ -23,7 +24,11 @@ class LevelManager:
         self.level = list()
         for rowIndex,row in enumerate(self.LevelData):
             for colIndex,cell in enumerate(row):
-                if not cell == " " or cell == 'o':
+                if cell == 'a':
+                    self.player.spawn.x = colIndex * tilsize
+                    self.player.spawn.y = rowIndex * tilsize
+                    continue
+                if not cell == " ":
                     self.level.append(self.tileManager.createTile(cell, colIndex * tilsize , rowIndex * tilsize))
 
     def drawLevel(self,surface):
@@ -53,7 +58,6 @@ class LevelManager:
     def loadNewLevel(self,level):
         self.currentLevel = level
         filePath = './Levels/level' + str(level) + '.txt'
-        print(filePath)
         with open(filePath, 'r') as file:
             # Read lines without stripping
             level = [line.rstrip('\n') for line in file]

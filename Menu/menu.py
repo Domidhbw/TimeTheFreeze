@@ -19,12 +19,12 @@ class Menu:
         self.unselectableLevels = self.getLevels(False)
         self.levels = self.createLevelList()
 
-    def handleMouse(self,mousePos,levelManager):
+    def handleMouse(self,mousePos,levelManager,player):
         mousePos = self.adjustMousePosition(mousePos)
         for levelButon in self.levels:
             if levelButon.rect.collidepoint(mousePos) and levelButon.isAllowed:
                 levelManager.loadNewLevel(levelButon.number)
-                levelManager.resetLevel()
+                player.die(levelManager)
                 return 'playing'
         return 'levelSelection'
 
@@ -68,7 +68,6 @@ class Menu:
     def createLevelList(self):
         origin = pygame.Vector2(50,50)
         levelButtonList = list()
-        print(self.possibleLevels)
         for level in self.possibleLevels:
             if level in self.selectableLevels:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,True))   

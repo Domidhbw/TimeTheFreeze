@@ -27,7 +27,10 @@ class CollisionHandler():
     def horizontalMovementCollisions(self,dt):
         self.player.applyFriction()
         self.player.move(dt)         
+        player_points = [self.player.rect.bottomleft, self.player.rect.bottomright]
         for tile in self.collisionMap:
+            if any(tile.rect.collidepoint(point) for point in player_points):
+                self.checkForKillTiles(tile.char)
             if tile.rect.colliderect(self.player.rect):
                 if self.player.direction.x < 0:
                     self.player.rect.left = tile.rect.right
@@ -36,10 +39,8 @@ class CollisionHandler():
                 if tile.char == 'e':
                     self.playerJumpTile()
                 if tile.char == 'f':
-                    self.player.die(self.levelManager)
                     self.levelManager.loadNextLevel()
-                    self.levelManager.resetLevel()
-                self.checkForKillTiles(tile.char)
+                    self.player.die(self.levelManager)
     
     def verticalMovementCollisions(self,dt):
         self.player.applyGravity(dt)
@@ -54,9 +55,7 @@ class CollisionHandler():
                     self.player.direction.y = 0
                 if tile.char == 'e':
                     self.playerJumpTile()
-                self.checkForKillTiles(tile.char)
                 
-
     def playerJumpTile(self):
         self.player.jumpHigh()
 
