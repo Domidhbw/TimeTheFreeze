@@ -19,12 +19,12 @@ class Menu:
         self.unselectableLevels = self.getLevels(False)
         self.levels = self.createLevelList()
 
-    def handleMouse(self,mousePos,levelManager):
+    def handleMouse(self,mousePos,levelManager,player):
         mousePos = self.adjustMousePosition(mousePos)
         for levelButon in self.levels:
             if levelButon.rect.collidepoint(mousePos) and levelButon.isAllowed:
                 levelManager.loadNewLevel(levelButon.number)
-                levelManager.resetLevel()
+                player.die(levelManager)
                 return 'playing'
         return 'levelSelection'
 

@@ -50,7 +50,7 @@ while running:
         elif gameState == levelSelection:
             #input handling for level selection menu
             if event.type == pygame.MOUSEBUTTONDOWN:
-                gameState = menu.handleMouse(pygame.mouse.get_pos(),levelManager)
+                gameState = menu.handleMouse(pygame.mouse.get_pos(),levelManager,player)
         elif gameState == playing:
             if keys[pygame.K_w]:
                 superPower.doIt(player,levelManager)
