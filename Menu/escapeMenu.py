@@ -2,9 +2,13 @@ import pygame
 
 class EscapeMenu():
     def __init__(self) -> None:
+        self.resumeButtonSprite =  pygame.image.load('./assets/Buttons/Resume.png').convert()
         self.resumeButton = pygame.rect.Rect(100,300,100,40)
+        self.restartButtonSprite =  pygame.image.load('./assets/Buttons/Restart.png').convert()
         self.restartButton = pygame.rect.Rect(300,300,100,40)
+        self.quitButtonSprite =  pygame.image.load('./assets/player.png').convert()
         self.quitToMainButton = pygame.rect.Rect(100,600,100,40)
+        self.quitToDestopButtonSprite =  pygame.image.load('./assets/player.png').convert()
         self.quitToDesktopButton = pygame.rect.Rect(300,600,100,40)
         self.allRects = [self.resumeButton,self.restartButton,self.quitToMainButton,self.quitToDesktopButton]
         
