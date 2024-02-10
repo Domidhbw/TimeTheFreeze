@@ -1,7 +1,7 @@
 import pygame
 
 class Player:
-    def __init__(self, spawn, speed):
+    def __init__(self, spawn, speed, musicHandler):
         self.spawn = spawn
         self.sprite = pygame.image.load('./assets/player.png').convert()
         self.direction = pygame.Vector2(0,0)
@@ -17,6 +17,7 @@ class Player:
         self.alive = True
         self.isSuperPowerAllowed = True
         self.isMoveAllowed = True
+        self.musicHandler = musicHandler
 
     def getKeyPressed(self):
         keys = pygame.key.get_pressed()
@@ -37,6 +38,7 @@ class Player:
         self.rect.y += self.direction.y *dt
 
     def jump(self):
+        self.musicHandler.playSoundJump()
         self.direction.y = self.jumpSpeed
 
     def applyFriction(self):
@@ -61,6 +63,7 @@ class Player:
 
     def die(self,levelManager):
         levelManager.resetLevel()
+        self.musicHandler.playSoundDie()
         self.rect.x = self.spawn.x
         self.rect.y = self.spawn.y
         self.alive = True
