@@ -1,17 +1,22 @@
 import pygame
 import json
 from .levelButton import LevelButton
+from .escapeButton import EscapeButton
+
 
 
 class Menu:
     def __init__(self) -> None:
         self.saveFilePath = './saveFile.json'
+        self.endButton = EscapeButton('./assets/Buttons/End.png',800,600)
         self.levelStatus = self.loadLevelStatus()
         self.possibleLevels = []
         self.selectableLevels = self.getLevels(True)
         self.unselectableLevels = self.getLevels(False)
         self.levels = self.createLevelList()
         self.background = pygame.image.load('./assets/Background.png').convert()
+
+       
         
     def menuStart(self):
         self.levelStatus = self.loadLevelStatus()
@@ -27,12 +32,16 @@ class Menu:
                 levelManager.loadNewLevel(levelButon.number)
                 player.die(levelManager)
                 return 'playing'
+        if self.endButton.rect.collidepoint(mousePos):
+            return 'quit'
         return 'levelSelection'
 
     def draw(self,screen,window):
+        self.menuStart()
         screen.blit(self.background,(0,0)) 
         for levelButton in self.levels:
             screen.blit(levelButton.sprite,(levelButton.rect.x,levelButton.rect.y))
+        screen.blit(self.endButton.sprite,(self.endButton.rect.x,self.endButton.rect.y))
         scaled_surface = pygame.transform.scale(screen, (pygame.display.Info().current_w, pygame.display.Info().current_h))
         window.blit(scaled_surface,(0,0))
 
@@ -67,13 +76,16 @@ class Menu:
             return unSelectableLevels
 
     def createLevelList(self):
-        origin = pygame.Vector2(50,50)
+        origin = pygame.Vector2(350,300)
         levelButtonList = list()
         for level in self.possibleLevels:
             if level in self.selectableLevels:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,True))   
             else:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,False))
+            if str(level) == '5':
+                origin.y += 100
+                origin.x = 350
             origin.x += 200
         return levelButtonList
         

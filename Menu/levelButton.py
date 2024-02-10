@@ -7,8 +7,8 @@ class LevelButton():
         self.isAllowed = isAllowed
         self.sprite = self.loadSprite()
         if not self.isAllowed:
-            self.sprite = './assets/Level0.png'
+            self.sprite = pygame.transform.scale(pygame.image.load('./assets/Buttons/Level0.png').convert(), (100, 50))
 
     def loadSprite(self):
         path = './assets/Buttons/Level' + str(self.number) + '.png'
-        return pygame.image.load(path).convert()
+        return pygame.transform.scale(pygame.image.load(path).convert(), (100, 50))

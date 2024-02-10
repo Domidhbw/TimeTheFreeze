@@ -33,7 +33,7 @@ escape = 'escape'
 musicHandler = music.MusicHandler()
 
 #initialize classes
-escapeMenu = EscapeMenu()
+escapeMenu = EscapeMenu(musicHandler)
 background = pygame.image.load('./assets/Background.png').convert()
 menu = Menu()
 player = Player(pygame.Vector2(400,90),300,musicHandler)
@@ -62,8 +62,8 @@ while running:
         elif gameState == escape:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 gameState = escapeMenu.handleInput(pygame.mouse.get_pos(),player,levelManager)
-                if gameState == 'quit':
-                    running = False
+        elif gameState == 'quit':
+            running = False
 
     if gameState == levelSelection:
         musicHandler.playTrack(1,False)

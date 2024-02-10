@@ -1,18 +1,21 @@
 import pygame
 
 from .escapeButton import EscapeButton
+from .slideButton import slider
 
 class EscapeMenu():
 
 
-    def __init__(self) -> None:
-        self.resumeButton = EscapeButton('./assets/Buttons/Resume.png',100,300)
-        self.restartButton = EscapeButton('./assets/Buttons/Restart.png',300,300)
-        self.quitButton = EscapeButton('./assets/Buttons/Menu.png',100,600)
-        self.quitToDesktop = EscapeButton('./assets/Buttons/End.png',200,100)
+    def __init__(self,musicHandler) -> None:
+        self.resumeButton = EscapeButton('./assets/Buttons/Resume.png',750,350)
+        self.restartButton = EscapeButton('./assets/Buttons/Restart.png',950,350)
+        self.quitButton = EscapeButton('./assets/Buttons/Menu.png',750,450)
+        self.quitToDesktop = EscapeButton('./assets/Buttons/End.png',950,450)
         self.allSprites = [self.resumeButton,self.restartButton,self.quitButton,self.quitToDesktop]
         self.background = pygame.image.load('./assets/Background.png').convert()
-        
+        self.musicSlider = slider()
+        self.musicHandler = musicHandler
+
 
     def handleInput(self,mousePos,player,levelManager):
         mousePos = self.adjustMousePosition(mousePos)
@@ -26,12 +29,14 @@ class EscapeMenu():
         elif self.quitToDesktop.rect.collidepoint(mousePos):
             return 'quit'
         else:
+            self.musicHandler.changeVolume(self.musicSlider.update(mousePos))
             return'escape'
 
     def drawEscapeMenu(self,screen,window):
         screen.blit(self.background,(0,0)) 
         for button in self.allSprites:
             screen.blit(button.sprite,(button.rect.x,button.rect.y)) 
+        self.musicSlider.drawSlide(screen)
         scaled_surface = pygame.transform.scale(screen, (pygame.display.Info().current_w, pygame.display.Info().current_h))
         window.blit(scaled_surface,(0,0))
 

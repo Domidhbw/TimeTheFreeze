@@ -8,6 +8,7 @@ class MusicHandler:
             "./music/tracks/horrer_synths.wav"     #music im start screen
         ]
          self.currentTrack = 0
+         self.volume = 0
          
          #sound effects
          self.soundJump = pygame.mixer.Sound("./music/soundEffects/SoundEffect_Jump.wav")
@@ -17,7 +18,7 @@ class MusicHandler:
          self.soundClone = pygame.mixer.Sound("./music/soundEffects/SoundEffect_Clone.wav")
          self.soundClone.set_volume(0.5)
          self.soundJumpPad = pygame.mixer.Sound("./music/soundEffects/SoundEffect_JumpPad.wav")
-         self.soundJumpPad.set_volume(0.3)
+         self.soundJumpPad.set_volume(0.1)
          
     #music
     def playTrack(self,track,update):
@@ -25,9 +26,13 @@ class MusicHandler:
             pygame.mixer.music.load(self.tracks[track])
             pygame.mixer.music.play()
             self.currentTrack = track
+
     def updateMusic(self):
-        if  not pygame.mixer.music.get_busy():
+        if not pygame.mixer.music.get_busy():
             self.playTrack(self.currentTrack,True)
+
+    def changeVolume(self,volume):
+        pygame.mixer.music.set_volume(volume)
     
     #soundefects
     def playSoundJump(self):
