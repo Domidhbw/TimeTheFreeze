@@ -31,9 +31,9 @@ class LevelManager:
                 if not cell == " ":
                     self.level.append(self.tileManager.createTile(cell, colIndex * tilsize , rowIndex * tilsize))
 
-    def drawLevel(self,surface):
+    def drawLevel(self,screen):
         for tile in self.level:
-            surface.blit(tile.sprite,(tile.rect.x,tile.rect.y))
+            screen.blit(tile.sprite,(tile.rect.x,tile.rect.y))
         
     def updateCollisions(self):
         for tile in self.level:
