@@ -16,6 +16,8 @@ class MusicHandler:
          self.soundDie.set_volume(0.5)
          self.soundClone = pygame.mixer.Sound("./music/soundEffects/SoundEffect_Clone.wav")
          self.soundClone.set_volume(0.5)
+         self.soundJumpPad = pygame.mixer.Sound("./music/soundEffects/SoundEffect_JumpPad.wav")
+         self.soundJumpPad.set_volume(0.3)
          
     #music
     def playTrack(self,track,update):
@@ -36,3 +38,8 @@ class MusicHandler:
         
     def playSoundClone(self):
         self.soundClone.play()
+        
+    def playSoundJumpPad(self):
+        self.soundJumpPad.play()
+        
+        
