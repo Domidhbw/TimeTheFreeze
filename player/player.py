@@ -60,11 +60,12 @@ class Player:
             self.speed -= 60
 
     def die(self,levelManager):
+        levelManager.resetLevel()
         self.rect.x = self.spawn.x
         self.rect.y = self.spawn.y
-        levelManager.resetLevel()
         self.alive = True
         self.isSuperPowerAllowed = True
+        self.direction = pygame.Vector2(0,0)
         pass
 
     def checkForDeath(self,levelManager):

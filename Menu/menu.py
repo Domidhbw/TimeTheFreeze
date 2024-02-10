@@ -68,7 +68,6 @@ class Menu:
     def createLevelList(self):
         origin = pygame.Vector2(50,50)
         levelButtonList = list()
-        print(self.possibleLevels)
         for level in self.possibleLevels:
             if level in self.selectableLevels:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,True))   

@@ -6,6 +6,7 @@ from superPower import doSuperPower
 from Menu.menu import Menu
 from saveManager.saveManager import SaveManager
 from music import music
+from Menu.escapeMenu import EscapeMenu
 
 pygame.init()
 
@@ -26,14 +27,16 @@ playing = 'playing'
 levelSelection = 'levelSelection'
 paused = 'paused'
 gameState = levelSelection
+escape = 'escape'
 
 #initialize classes
+escapeMenu = EscapeMenu()
 background = pygame.image.load('./assets/Background.png').convert()
 menu = Menu()
-levelManager = LevelManager()
+player = Player(pygame.Vector2(400,90),300)
+levelManager = LevelManager(player)
 levelManager.createLevel()
 levelManager.createCollisionMap()
-player = Player(pygame.Vector2(400,90),300)
 collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower()
@@ -41,6 +44,7 @@ superPower = doSuperPower()
 while running:
     #GET INPUT
     for event in pygame.event.get():
+        keys = pygame.key.get_pressed()
         if event.type == pygame.QUIT:
             running = False
         elif gameState == levelSelection:
@@ -48,12 +52,23 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 gameState = menu.handleMouse(pygame.mouse.get_pos(),levelManager)
         elif gameState == playing:
-            keys = pygame.key.get_pressed()
             if keys[pygame.K_w]:
                 superPower.doIt(player,levelManager)
+            if keys[pygame.K_ESCAPE]:
+                gameState = escape
+        elif gameState == escape:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                gameState = escapeMenu.handleInput(pygame.mouse.get_pos(),player,levelManager)
+                if gameState == 'quit':
+                    running = False
 
     if gameState == levelSelection:
         menu.draw(screen,window)
+        pygame.display.flip()
+        continue
+
+    if gameState == escape:
+        escapeMenu.drawEscapeMenu(screen,window)
         pygame.display.flip()
         continue
 
