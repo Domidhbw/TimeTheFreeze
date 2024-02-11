@@ -86,4 +86,5 @@ class Player:
 
     def jumpHigh(self):
        self.direction.y = self.jumpSpeed *2
+       self.hasJump = False
        self.musicHandler.playSoundJumpPad()

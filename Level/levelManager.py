@@ -54,7 +54,6 @@ class LevelManager:
                 self.shift.x = 0
                 player.isMoveAllowed = True
 
-
     def loadNewLevel(self,level):
         self.currentLevel = level
         filePath = './Levels/level' + str(level) + '.txt'
@@ -64,6 +63,8 @@ class LevelManager:
         self.LevelData = level
 
     def loadNextLevel(self):
+        if self.currentLevel == 6:
+            pass
         self.loadNewLevel(int(self.currentLevel)+1)
         self.saveLevelStatus(self.currentLevel)
 
