@@ -83,9 +83,6 @@ class Menu:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,True))   
             else:
                 levelButtonList.append(LevelButton(str(level),origin.x,origin.y,False))
-            if str(level) == '5':
-                origin.y += 100
-                origin.x = 350
             origin.x += 200
         return levelButtonList
         
