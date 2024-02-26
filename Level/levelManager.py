@@ -57,10 +57,12 @@ class LevelManager:
     def loadNewLevel(self,level):
         self.currentLevel = level
         filePath = './Levels/level' + str(level) + '.txt'
-        with open(filePath, 'r') as file:
-            # Read lines without stripping
-            level = [line.rstrip('\n') for line in file]
-        self.LevelData = level
+        if int(self.currentLevel) < 7:
+            with open(filePath, 'r') as file:
+                # Read lines without stripping
+                level = [line.rstrip('\n') for line in file]
+            self.LevelData = level
+
 
     def loadNextLevel(self):
         if self.currentLevel == 6:
