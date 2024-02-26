@@ -43,8 +43,6 @@ collision = CollisionHandler(player,levelManager)
 collision.createKillTileList()
 superPower = doSuperPower(musicHandler)
 
-
-
 while running:
     #GET INPUT
     for event in pygame.event.get():
@@ -52,7 +50,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif gameState == levelSelection:
-            #input handling for level selection menu
             if event.type == pygame.MOUSEBUTTONDOWN:
                 gameState = menu.handleMouse(pygame.mouse.get_pos(),levelManager,player)
         elif gameState == playing:

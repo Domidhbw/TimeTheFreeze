@@ -3,8 +3,6 @@ import json
 from .levelButton import LevelButton
 from .escapeButton import EscapeButton
 
-
-
 class Menu:
     def __init__(self) -> None:
         self.saveFilePath = './saveFile.json'
@@ -15,9 +13,7 @@ class Menu:
         self.unselectableLevels = self.getLevels(False)
         self.levels = self.createLevelList()
         self.background = pygame.image.load('./assets/Background.png').convert()
-
-       
-        
+  
     def menuStart(self):
         self.levelStatus = self.loadLevelStatus()
         self.possibleLevels = []

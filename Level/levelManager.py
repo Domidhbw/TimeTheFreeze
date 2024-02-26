@@ -22,14 +22,14 @@ class LevelManager:
 
     def createLevel(self):
         self.level = list()
-        for rowIndex,row in enumerate(self.LevelData):
-            for colIndex,cell in enumerate(row):
-                if cell == 'a':
+        for rowIndex,row in enumerate(self.LevelData):          #Enumerating the level data which comes from a level.txt 
+            for colIndex,cell in enumerate(row):                #Using two For loops to be able to a loop thourg the row and b to loop through every column and aswell contain the information where we are
+                if cell == 'a':                                 # using a char to set player spawn
                     self.player.spawn.x = colIndex * tilsize
                     self.player.spawn.y = rowIndex * tilsize
                     continue
                 if not cell == " ":
-                    self.level.append(self.tileManager.createTile(cell, colIndex * tilsize , rowIndex * tilsize))
+                    self.level.append(self.tileManager.createTile(cell, colIndex * tilsize , rowIndex * tilsize)) # we use the information of the position we are in to let the tilemanager create a tile for the level
 
     def drawLevel(self,screen):
         for tile in self.level:
@@ -62,13 +62,13 @@ class LevelManager:
                 # Read lines without stripping
                 level = [line.rstrip('\n') for line in file]
             self.LevelData = level
-
+            self.saveLevelStatus(self.currentLevel)
 
     def loadNextLevel(self):
         if self.currentLevel == 6:
             pass
         self.loadNewLevel(int(self.currentLevel)+1)
-        self.saveLevelStatus(self.currentLevel)
+
 
     def resetLevel(self):
         self.createLevel()
